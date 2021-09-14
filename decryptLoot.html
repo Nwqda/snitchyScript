@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>snitchyScript.js - Loot Decryptor</title>
+      <!-- Fonts -->
+      <link href="https:////maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" rel="stylesheet" type="text/css">
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+      <style type="text/css">
+        .bg-primary{background-color:#ec005a!important}.btn-file{position:relative;overflow:hidden}.btn-file input[type=file]{position:absolute;top:0;right:0;min-width:100%;min-height:100%;font-size:100px;text-align:right;opacity:0;outline:0;background:#fff;cursor:inherit;display:block}
+      </style>
+   </head>
+   <body>
+      <!-- navbar starts -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+         <div class="container">
+            <a class="navbar-brand" href="#">
+               <h3 class="mb-0"><i class="fas fa-cookie-bite"></i></h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                     <a class="nav-link p-2 font-weight-bold text-white" href="#">snitchyScript.js </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link p-2 font-weight-bold text-white" href="index.html">Demo Page </a>
+                  </li>
+               </ul>
+               <a class="github-button nav-link" href="https://github.com/ShinoNuma/snitchyScript" data-show-count="true" aria-label="Fork ShinoNuma/snitchyScript.js on GitHub">Fork</a>
+            </div>
+         </div>
+      </nav>
+      <div class="jumbotron jumbotron-odi-hero bg-primary">
+         <div class="jumbotron-overlay ">
+            <div class="container jumbotron-padding text-center">
+               <img class="img-fluid"  alt="snitchyScript.js logo" width="520" src="logo.png">
+            </div>
+         </div>
+      </div>
+      <div class="container mt-5 text-center">
+         <h3 class="pt-4 d-inline latest-news">Upload your image to see the hidden content!</h3>
+         <br>
+         <p><span class="btn btn-primary btn-file">
+            Select Image <input type="file" id="snitchyPic" name="snitchyPic"/>
+            </span>
+         </p>
+      </div>
+      <canvas id="snitchyCanvas"></canvas>
+      <script src="snitchyDecrypt.js"></script>
+   </body>
+</html>

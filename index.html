@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>snitchyScript.js - Demo Page (Reflected XSS)</title>
+      <!-- Fonts -->
+      <link href="https:////maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" rel="stylesheet" type="text/css">
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+      <style type="text/css">
+         .bg-primary{background-color:#ec005a!important}.btn-file{position:relative;overflow:hidden}.btn-file input[type=file]{position:absolute;top:0;right:0;min-width:100%;min-height:100%;font-size:100px;text-align:right;opacity:0;outline:0;background:#fff;cursor:inherit;display:block}
+      </style>
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+         <div class="container">
+            <a class="navbar-brand" href="#">
+               <h3 class="mb-0"><i class="fas fa-cookie-bite"></i></h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                     <a class="nav-link p-2 font-weight-bold text-white" href="#">snitchyScript.js </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link p-2 font-weight-bold text-white" href="decryptLoot.html">Decrypt Loot </a>
+                  </li>
+               </ul>
+               <a class="github-button nav-link" href="https://github.com/ShinoNuma/snitchyScript" data-show-count="true" aria-label="Fork ShinoNuma/snitchyScript.js on GitHub">Fork</a>
+            </div>
+         </div>
+      </nav>
+      <div class="jumbotron jumbotron-odi-hero bg-primary">
+         <div class="jumbotron-overlay ">
+            <div class="container jumbotron-padding text-center">
+               <img class="img-fluid"  alt="snitchyScript.js logo" width="520" src="logo.png">
+            </div>
+         </div>
+      </div>
+      <div class="container mt-5 text-center">
+      <h3 class="pt-4 d-inline latest-news">Let's try it! (Don't forget to add your Telegram API info into snitchyScript.js)</h3>
+      <div class="container">
+         <article class="card">
+            <div class="card-body p-5">
+               <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+                  <li class="nav-item">
+                     <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                     <i class="fa fa-credit-card"></i> Credit Card</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
+                     <i class="fab fa-paypal"></i>  Paypal</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
+                     <i class="fa fa-university"></i>  Bank Transfer</a>
+                  </li>
+               </ul>
+               <div class="tab-content">
+                  <div class="tab-pane fade show active" id="nav-tab-card">
+                     <p id="alert" class="alert alert-success">Payment validate! Please check your Telegram app :)</p>
+                     <form id="myform" role="form">
+                        <div class="form-group">
+                           <label for="username">Full name (on the card)</label>
+                           <input type="text" class="form-control" name="username" placeholder="" >
+                        </div>
+                        <div class="form-group">
+                           <label for="cardNumber">Card number</label>
+                           <div class="input-group">
+                              <input type="text" class="form-control" name="cardNumber" placeholder="">
+                              <div class="input-group-append">
+                                 <span class="input-group-text text-muted">
+                                 <i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>   
+                                 <i class="fab fa-cc-mastercard"></i> 
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-8">
+                              <div class="form-group">
+                                 <label><span class="hidden-xs">Expiration</span> </label>
+                                 <div class="input-group">
+                                    <input type="number" class="form-control" name="MM" placeholder="MM" >
+                                    <input type="number" class="form-control" name="YY" placeholder="YY">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-sm-4">
+                              <div class="form-group">
+                                 <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
+                                 <input type="number" class="form-control" name="CVV">
+                              </div>
+                           </div>
+                        </div>
+                        <button id="payment" class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button>
+                     </form>
+                     <p id="xss"></p>
+                  </div>
+               </div>
+            </div>
+         </article>
+      </div>
+      <script type="text/javascript">
+         // Reflected xss simulation (demo purpose)
+         const alertPopup = document.getElementById('alert')
+         alertPopup.classList.add('d-none');
+         const queryString = window.location.search;
+         const urlParams = new URLSearchParams(queryString);
+         const xssQuery = urlParams.get('xss')
+         document.getElementById('xss').innerHTML = xssQuery
+         this.executeButton = document.getElementById('payment');
+         this.executeButton.onclick = () => alertPopup.classList.remove('d-none'); 
+      </script>
+   </body>
+</html>
