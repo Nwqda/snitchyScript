@@ -5,9 +5,9 @@ Modern XSS exploitation script.
 
 ![snitchyScript.js Logo](https://i.ibb.co/NsdcYGC/logo.png)
 
-snitchyScript.js is a JavaScript script that exploit XSS vulnerabilities in a modern and simple way. Once inserted in a page the script will automatically get all elements in the page (such as input values, cookie values, current URL, etc...) and using canvas in JavaScript, create an image and hide all data into it (home made steganography algorithm). Once the image created, the image will be send using Telegram. 
+snitchyScript.js is a JavaScript script that exploit XSS vulnerabilities in a simple and modern way. Once loaded in a web page the script will automatically get all elements in the page (such as input values, cookie values, current URL, etc...) and using canvas in JavaScript, create an image and hide all data into it (home made steganography algorithm). Once the snitchy image created, the image will be automatically send using Telegram. 
 
-### Proof Of Concept
+### Proof of Concept
 
 [![Video PoC Shodan Quest](https://i.ibb.co/7gXHL9q/500px-youtube-social-play.png)](https://www.youtube.com/watch?v=HBahsMN6PFg)
 
@@ -17,7 +17,7 @@ snitchyScript.js is a JavaScript script that exploit XSS vulnerabilities in a mo
 
 ### How to use
 
-To explain how snitchyScript.js works, I have created two HTML pages in the repo.
+To explain how snitchyScript.js works, I have created two HTML pages in this repo.
 
 * index.html: which simulate a html page with a reflected XSS in order to show how to insert the script and how the script behave.
 
@@ -88,7 +88,7 @@ After executed, the script will send the image with the data hide inside in your
 https://i.ibb.co/LdqsFHN/a1ob6.png)
 
 ### Decrypt the image
-Since the data are hidden in the image, a decryption demo page has been created to extract the data from the image. So now let's go to decryptLoot.html and upload the image received on Telegram.
+Since the data are hidden in the image, a decryption demo page has been created to extract the hidden data from the image. So now let's go to decryptLoot.html and upload the image received on Telegram.
 
 ![snitchyScript.js loot image](
 https://i.ibb.co/5cdFj8c/snitchy-Script-decrypt-loot-page.png)
